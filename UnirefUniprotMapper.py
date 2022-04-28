@@ -1,7 +1,8 @@
 """
 Created on Wed Apr 27 16:27:34 2022
 
-@author: hbckleikamp
+@author: hbckleikamp, Updated from: 
+Simon Cockell https://gist.github.com/sjcockell/329730
 """
 #%% parameters
 
