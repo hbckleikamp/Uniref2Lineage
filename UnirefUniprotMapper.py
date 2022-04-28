@@ -146,7 +146,7 @@ for chunk in chunks: #multithread this!
         print("unwinding, query at: "+str(counter/(len(accs)//accession_batch))+" elapsed time="+str(time.time()-s))
         for thread in threads:
             thread.join()
-        threads=[] #this seems to act different on windows?
+        threads=[] 
          
 for thread in threads:
     thread.join()
@@ -193,7 +193,7 @@ for chunk in chunks: #multithread this!
         print("unwinding, query at: "+str(counter/(len(accs)//accession_batch))+" elapsed time="+str(time.time()-s))
         for thread in threads:
             thread.join()
-        threads=[] #this seems to act different on windows?
+        threads=[] 
       
 for thread in threads:
     thread.join()
