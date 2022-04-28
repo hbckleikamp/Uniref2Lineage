@@ -7,6 +7,7 @@ Created on Wed Apr 27 16:27:34 2022
 
 accs=[] #put here your Uniref accessions
 
+input_data_type=N50 #Uniref50, please look at abbreviations from https://www.uniprot.org/help/api_idmapping
 
 columns=[ #these are the columns that you would like to have in your output data
     "id",
@@ -155,7 +156,7 @@ for chunk in chunks: #multithread this!
     time.sleep(0.1)
     counter+=1
     print(counter)
-    t=threading.Thread(target=uniprot_mapping_mt, args=['NF50',
+    t=threading.Thread(target=uniprot_mapping_mt, args=[input_data_type,
                                                     'ACC',
                                                     "+OR+".join(chunk.tolist()),
                                                     rs])
