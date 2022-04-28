@@ -27,18 +27,7 @@ columns=[ #these are the columns that you would like to have in your output data
     
     ]
 
-
-
-#%% change directory to script directory (should work on windows and mac)
-import os
-from pathlib import Path
-from inspect import getsourcefile
-os.chdir(str(Path(os.path.abspath(getsourcefile(lambda:0))).parents[0]))
-script_dir=os.getcwd()
-print(os.getcwd())
-
-basedir=os.getcwd()
-
+#%% modules
 
 import pandas as pd
 import time
