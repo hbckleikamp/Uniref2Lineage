@@ -7,9 +7,9 @@ Created on Wed Apr 27 16:27:34 2022
 
 accs=[] #put here your Uniref accessions
 
-input_data_type=N50 #Uniref50, please look at abbreviations from https://www.uniprot.org/help/api_idmapping
+input_data_type='N50' #Uniref50, please look at abbreviations from https://www.uniprot.org/help/api_idmapping
 
-columns=[ #these are the columns that you would like to have in your output data
+columns=[ #these are the columns that you would like to have in your output data, please look at: https://www.uniprot.org/help/uniprotkb_column_names
     "id",
     "entry%20name",
     "protein%20names",
@@ -220,5 +220,9 @@ for thread in threads:
 tdf=pd.concat(rs)
 tdf=tdf[~tdf.applymap(lambda x: x is None).any(axis=1)]
 tdf=tdf[~tdf.applymap(lambda x: x.startswith("b'")).any(axis=1)]
+mdf=rdf.merge(tdf,how="left",left_on="To",right_on="id") #result is stored in mdf
 
-mdf=rdf.merge(tdf,how="left",left_on="To",right_on="id")
+mdf.to_csv("mapped_result.csv")
+
+
+
