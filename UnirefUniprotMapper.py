@@ -1,7 +1,7 @@
 """
 Created on Wed Apr 27 16:27:34 2022
 
-@author: ZR48SA
+@author: hbckleikamp
 """
 #%% parameters
 
@@ -46,6 +46,7 @@ import urllib
 
 #%% functions
 
+#Uniprot mapping multithreaded
 def uniprot_mapping_mt(fromtype, totype, identifier,rs):
     """Takes an identifier, and types of identifier 
     (to and from), and calls the UniProt mapping service"""
@@ -77,7 +78,7 @@ def uniprot_mapping_mt(fromtype, totype, identifier,rs):
 
 
 
-
+#uniprot mapping with collumn argument
 def uniprot_mapping_mtc(fromtype, totype, identifier,columns,rs):
     """Takes an identifier, and types of identifier 
     (to and from), and calls the UniProt mapping service"""
@@ -99,7 +100,7 @@ def uniprot_mapping_mtc(fromtype, totype, identifier,columns,rs):
     
     #     try:
     r = urllib.request.urlopen(url).read()
-    yourlist=str(r).split("\\n")[0].split("b'")[1] #get the batch submission
+    yourlist=str(r).split("\\n")[0].split("b'")[1] #get the batch submission webid
     
     
     #urllib turns the dictionary params into an encoded url suffix
