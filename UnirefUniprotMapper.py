@@ -139,8 +139,10 @@ threads=[]
 counter=0
 base_thread=threading.active_count()
 
-batchsize=200
-chunks=chunker(accs,batchsize)
+accession_batch=200
+batch_no=25
+
+chunks=chunker(accs,accession_batch)
 for chunk in chunks: #multithread this!
     time.sleep(0.1)
     counter+=1
@@ -153,8 +155,8 @@ for chunk in chunks: #multithread this!
     threads.append(t)
     
     #unwind in case of thread overload, manage server traffic
-    if counter%25==0:
-        print("unwinding, query at: "+str(counter/(len(accs)//batchsize))+" elapsed time="+str(time.time()-s))
+    if counter%batch_no==0:
+        print("unwinding, query at: "+str(counter/(len(accs)//accession_batch))+" elapsed time="+str(time.time()-s))
         for thread in threads:
             thread.join()
         threads=[] #this seems to act different on windows?
@@ -178,8 +180,11 @@ threads=[]
 counter=0
 
 accs=rdf["To"].drop_duplicates()
-batchsize=200
-chunks=chunker(accs,batchsize)
+accession_batch=200
+batch_no=50
+
+
+chunks=chunker(accs,accession_batch)
 for chunk in chunks: #multithread this!
     
     time.sleep(0.2)
@@ -197,8 +202,8 @@ for chunk in chunks: #multithread this!
     threads.append(t)
     
     #unwind in case of thread overload, manage server traffic
-    if counter%50==0:
-        print("unwinding, query at: "+str(counter/(len(accs)//batchsize))+" elapsed time="+str(time.time()-s))
+    if counter%batch_no==0:
+        print("unwinding, query at: "+str(counter/(len(accs)//accession_batch))+" elapsed time="+str(time.time()-s))
         for thread in threads:
             thread.join()
         threads=[] #this seems to act different on windows?
