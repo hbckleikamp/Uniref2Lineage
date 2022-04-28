@@ -117,19 +117,6 @@ def chunker(lst,n):
         yield lst[i:i+n]
         
         
-def lca(x,rank_names):
-        ix=0
-        for r in rank_names:
-            if x[r].nunique()!=1:
-                break
-            else:
-                ix+=1
-        blca=x.iloc[0,0:ix].tolist()
-        return blca+[""]*(len(rank_names)-len(blca)) #pad
-
-
-
-
 
 
 #%% Map Uniref to UniprotKB
