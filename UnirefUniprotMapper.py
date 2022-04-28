@@ -3,6 +3,29 @@ Created on Wed Apr 27 16:27:34 2022
 
 @author: ZR48SA
 """
+#%% parameters
+
+accs=[] #put here your Uniref accessions
+
+
+columns=[ #these are the columns that you would like to have in your output data
+    "id",
+    "entry%20name",
+    "protein%20names",
+    "organism-id",
+    "lineage(SUPERKINGDOM)",
+    "lineage(PHYLUM)",
+    "lineage(CLASS)",
+    "lineage(ORDER)",
+    "lineage(FAMILY)",
+    "lineage(GENUS)",
+    "lineage(SPECIES)",
+    "ec",
+    "go"
+    
+    
+    ]
+
 
 
 #%% change directory to script directory (should work on windows and mac)
@@ -20,10 +43,7 @@ import pandas as pd
 import time
 import threading
 import urllib
-from collections import Counter
-from pathlib import Path
-import string
-from openpyxl import load_workbook
+
 #%% functions
 
 def uniprot_mapping_mt(fromtype, totype, identifier,rs):
@@ -120,56 +140,7 @@ def lca(x,rank_names):
 
 
 
-#%% parameters
 
-
-
-files=[
-"C:/Comet/idXML/C24_1_JSP_JLN_UPLIFT_PSMS.txt",
-"C:/Comet/idXML/C6_2_JSP_JLN_UPLIFT_PSMS.txt",
-"C:/Comet/idXML/C6_1_JSP_JLN_UPLIFT_PSMS.txt",
-"C:/Comet/idXML/Re2_JSP_JLN_UPLIFT_PSMS.txt",
-"C:/Comet/idXML/Re1_JSP_JLN_UPLIFT_PSMS.txt",
-"C:/Comet/idXML/Ox1_JSP_JLN_UPLIFT_PSMS.txt",
-"C:/Comet/idXML/Ox2_JSP_JLN_UPLIFT_PSMS.txt",
-"C:/Comet/idXML/C24_2_JSP_JLN_UPLIFT_PSMS.txt"]
-
-
-columns=[
-    "id",
-    "entry%20name",
-    "protein%20names",
-    "organism-id",
-    "lineage(SUPERKINGDOM)",
-    "lineage(PHYLUM)",
-    "lineage(CLASS)",
-    "lineage(ORDER)",
-    "lineage(FAMILY)",
-    "lineage(GENUS)",
-    "lineage(SPECIES)",
-    "ec",
-    "go"
-    
-    
-    ]
-
-rank_names=['lineage(SUPERKINGDOM)', 'lineage(PHYLUM)', 'lineage(CLASS)',
-'lineage(ORDER)', 'lineage(FAMILY)', 'lineage(GENUS)',
-'lineage(SPECIES)']
-
-#%%    
-accs=[]
-for file in files:
-
-
-    df=pd.read_csv(file,sep="\t")
-    
-    df["Protein Accessions"]=df["Protein Accessions"].str.split(" ")
-    df=df.explode("Protein Accessions")
-    acc=df["Protein Accessions"].drop_duplicates()
-    accs.append(acc)
-    
-accs=pd.concat(accs).drop_duplicates()
 #%% Map Uniref to UniprotKB
 s=time.time()
 rs=list()
