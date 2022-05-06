@@ -5,7 +5,7 @@ A python script to support UniprotKB mapping from uniref accessions to uniprot a
 <br>Input paramaters are:
 <br>accs: a list of your accessions 
 <br>input_data_type: the type of accession that you input (https://www.uniprot.org/help/api_idmapping)
-<br>collumns: data collumns required in the final output (https://www.uniprot.org/help/uniprotkb_column_names)
+<br>columns: data columns required in the final output (https://www.uniprot.org/help/uniprotkb_column_names)
 
 
 
